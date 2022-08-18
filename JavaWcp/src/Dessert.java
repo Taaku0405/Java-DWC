@@ -1,20 +1,42 @@
 public enum Dessert {
-	public static void main(String[] args) {
+  APPLE(100) {
+    @Override
+    void advertise() {
+      // りんご用のadvertiseの実装
+      System.out.println("まっかなりんごが" + getPrice() + "円！"); // getPriceメソッドも活用できる
+      Dessert.APPLE.advertise();
+    }
+  },
 
-  // それぞれに値段を指定する
-    APPLE(100), ICE_CREAM(200), CAKE(300),;
+  ICE_CREAM(200) {
+    @Override
+    void advertise() {
+      // アイスクリーム用のadvertiseの実装
+      System.out.println("夏にぴったりアイスクリームが" + getPrice() + "円！");
+      Dessert.ICE_CREAM.advertise();
+    }
+  },
 
-  // 値段を保持するフィールド
-	private int price;
-	System.out.println(Dessert.APPLE.getPrice());
+  CAKE(300) {
+    @Override
+    void advertise() {
+      // ケーキ用のadvertiseの実装
+      System.out.println("皆大好き甘いケーキが" + getPrice() + "円！");
+      Dessert.CAKE.advertise();
+    }
+  },
+  ;
 
-	// コンストラクタを追加。引数はint型の値段。
-	private Dessert(int price) {
-		this.price = price;
-	}
+  private int price;
 
-	// 値段を取得するメソッドを追加
-	public int getPrice() {
-		return price;
-	}
-}}
+  private Dessert(int price) {
+    this.price = price;
+  }
+
+  public int getPrice() {
+    return price;
+  }
+
+  // 宣伝文句を出力する抽象メソッド。各インスタンスで実装する
+  abstract void advertise();
+}
